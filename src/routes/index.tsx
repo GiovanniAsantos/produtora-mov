@@ -1,10 +1,10 @@
 // src/services/routes/Routes.tsx
 import React from 'react'
-import { HashRouter, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import routesConfig from './routesConfig'
 
 const AppRoutes: React.FC = () => (
-  <HashRouter>
+  <BrowserRouter>
       <Router>
     <Routes>
       {routesConfig.map(route => (
@@ -12,7 +12,7 @@ const AppRoutes: React.FC = () => (
       ))}
     </Routes>
   </Router>
-  </HashRouter>
+  </BrowserRouter>
 
 )
 
