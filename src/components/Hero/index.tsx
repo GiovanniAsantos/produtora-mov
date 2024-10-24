@@ -44,7 +44,7 @@ export const Hero: React.FC<HeroProps> = () => {
             textColor={'white'}
             letterSpacing={6}
             fontSize={'20px'}>
-            Psroduzindo Filmes que Impulsionam Negócios
+            Produzindo Filmes que Impulsionam Negócios
           </Text>
         </Stack>
         <Box position="absolute" bottom={160}>
