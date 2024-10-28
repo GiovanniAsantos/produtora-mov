@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Stack, Text } from '@chakra-ui/react'
-import logoMovWhite from '../../assets/img/logo-white.png'
+import newLogo from '../../assets/img/newLogo.png'
 import heroMovie from '../../assets/videos/business.mp4'
 import WhatsAppButton from '../WhatsappButton'
 
@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = () => {
           display="flex"
           alignItems="center"
           justifyContent="center">
-          <img width="30%" height="auto" src={logoMovWhite} alt="Logo" />
+          <img width="30%" height="auto" src={newLogo} alt="Logo" />
           <Text
             textShadow={'0px 0px 10px rgba(0, 0, 0, 0.5), 0px 0px 90px rgba(0, 0, 0, 0.5), 0px 0px 30px rgba(0, 0, 0, 0.5)'}
             fontWeight={400}

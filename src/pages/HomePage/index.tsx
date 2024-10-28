@@ -17,8 +17,8 @@ const HomePage: React.FC = () => {
         <Hero />
         <SmallAbout />
         <Portfolio />
-        <Contact />
         <Clients />
+        <Contact />
       </Stack>
     </Box>
   )
