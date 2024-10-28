@@ -3,6 +3,7 @@ import { Box, Stack, Text } from '@chakra-ui/react'
 import newLogo from '../../assets/img/newLogo.png'
 import heroMovie from '../../assets/videos/business.mp4'
 import WhatsAppButton from '../WhatsappButton'
+import InstagramButton from '../InstagramButton'
 
 type HeroProps = {}
 
@@ -47,8 +48,9 @@ export const Hero: React.FC<HeroProps> = () => {
             Produzindo Filmes que Impulsionam Negócios
           </Text>
         </Stack>
-        <Box position="absolute" bottom={160}>
+        <Box position="absolute" bottom={160} justifyContent={"space-around"} display={"flex"} width={'200px'}>
           <WhatsAppButton phoneNumber="85996285377" />
+          <InstagramButton username='mov_produtora' />
         </Box>
       </Box>
     </>
