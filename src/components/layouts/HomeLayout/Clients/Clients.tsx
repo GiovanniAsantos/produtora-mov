@@ -1,7 +1,7 @@
-import { Box, Button, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
-import MovLayout from "../../../../components/layouts/MovLayout";
-import "./style.css";
+import { Box, Button, Text, useBreakpointValue } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import MovLayout from '../../../../components/layouts/MovLayout';
+import './style.css';
 
 type ClientsProps = {};
 
@@ -14,6 +14,10 @@ export const Clients: React.FC<ClientsProps> = () => {
     setVisibleCards((prev) => Math.min(prev + 3, totalCards)); // Increase by 3, but don't exceed total
   };
 
+  // Determine how many cards to show based on screen size
+  const maxVisibleCards = useBreakpointValue({ base: 3, md: totalCards }) || totalCards;
+  const showAllCards = useBreakpointValue({ base: false, md: true, lg: true }) || false;
+
   return (
     <>
       <MovLayout maxWidthContainer="100vw">
@@ -25,7 +29,8 @@ export const Clients: React.FC<ClientsProps> = () => {
           <br />
           <br />
           <Box className="clients-grid">
-            {[...Array(visibleCards)].map((_, index) => (
+            {/* Show all cards if screen is large enough */}
+            {[...Array(showAllCards ? totalCards : Math.min(visibleCards, maxVisibleCards))].map((_, index) => (
               <Box key={index} className="clients-card">
                 <Text className="clients-card-text">
                   Aqui fica a imagem do cliente
@@ -33,13 +38,14 @@ export const Clients: React.FC<ClientsProps> = () => {
               </Box>
             ))}
           </Box>
-          {visibleCards < totalCards && ( // Only show the button if there are more cards to load
+          {/* Only show the button if there are more cards to load and the screen size is small */}
+          {!showAllCards && visibleCards < totalCards && (
             <Button
               onClick={loadMoreCards}
               backgroundColor="#4497B3" // Set the button color
               color="white" // Ensure text color is white
-              marginTop="50px"
-              _hover={{ backgroundColor: "#357f94" }}
+              marginTop="20px"
+              _hover={{ backgroundColor: '#357f94' }} // Optional: Add a hover effect
             >
               Load More
             </Button>

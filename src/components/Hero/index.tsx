@@ -31,7 +31,7 @@ export const Hero: React.FC<HeroProps> = () => {
         </Text>
       </Stack>
       <Box className="hero-buttons">
-        <WhatsAppButton phoneNumber="85996285377" />
+        <WhatsAppButton phoneNumber="85996394456" />
         <InstagramButton username="mov_produtora" />
       </Box>
     </Box>

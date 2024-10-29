@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
-import { Box, SimpleGrid, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Select } from '@chakra-ui/react';
+import { Box, SimpleGrid, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Select, Button, useBreakpointValue } from '@chakra-ui/react';
 import MovLayout from '../../MovLayout';
 
 export const Portfolio: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState<string>('FIlmes Publicitários');
+  const [selectedTab, setSelectedTab] = useState<string>('Filmes Publicitários');
+  const [visibleCards, setVisibleCards] = useState(3); // Start by showing 3 cards
+  const totalCards = 15; // Total number of cards (you can change this as needed)
 
   const tabs = [
-    'FIlmes Publicitários',
+    'Filmes Publicitários',
     'Vídeos Institucionais',
     'Conteúdo',
     'Varejo',
     'REEL',
   ];
 
+  const loadMoreCards = () => {
+    setVisibleCards((prev) => Math.min(prev + 3, totalCards)); // Increase by 3, but don't exceed total
+  };
+
+  // Determine how many cards to show based on screen size
+  const showAllCards = useBreakpointValue({ base: false, md: true, lg: true }) || false;
+
   const renderCards = () => (
     <SimpleGrid columns={[1, 1, 2, 3]} spacing={5} width="100%">
-      {[...Array(3)].map((_, index) => (
+      {[...Array(showAllCards ? totalCards : Math.min(visibleCards, totalCards))].map((_, index) => (
         <Box key={index} bg={'#292a2d'} width={'90%'} height={'300px'} mx="auto" display="flex" justifyContent="center" alignItems="center">
           <Text color="white" textAlign={'center'}>
             Aqui fica o conteúdo da panel específica para {selectedTab}
@@ -81,6 +90,18 @@ export const Portfolio: React.FC = () => {
             </Select>
             {renderCards()}
           </Box>
+          {/* Only show the button if there are more cards to load and the screen size is small */}
+          {!showAllCards && visibleCards < totalCards && (
+            <Button
+              onClick={loadMoreCards}
+              backgroundColor="#4497B3" // Set the button color
+              color="white" // Ensure text color is white
+              marginTop="20px"
+              _hover={{ backgroundColor: '#357f94' }} // Optional: Add a hover effect
+            >
+              Load More
+            </Button>
+          )}
         </Box>
       </MovLayout>
     </>
