@@ -1,0 +1,77 @@
+/* Clients.css */
+.clients-container {
+    margin-top: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    background-color: #171717;
+    color: white;
+    padding-top: 0px;
+  }
+  
+  .clients-title {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .clients-title h1 {
+    font-size: 50px;
+  }
+  
+  .clients-title hr {
+    color: white;
+    width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .clients-grid {
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
+    grid-template-rows: repeat(3, 1fr); /* 3 rows */
+    gap: 20px; /* Space between cards */
+  }
+
+  .clients-button {
+    margin-top: 20px; /* Add some space above the button */
+    background-color: #4497B3 !important;
+  }
+  
+  .clients-card {
+    background-color: #292a2d;
+    width: 100%; /* Fill available width */
+    height: 0; /* Use padding for height */
+    padding-bottom: 100%; /* Maintain a square aspect ratio */
+    position: relative; /* For absolute positioning of content */
+    border-radius: 50%; /* Make the card circular */
+    overflow: hidden; /* Prevent overflow */
+  }
+  
+  .clients-card-text {
+    color: white;
+    text-align: center;
+    position: absolute; /* Center text */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centering */
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .clients-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .clients-grid {
+      grid-template-columns: 1fr; /* 1 column on very small screens */
+    }
+  }
+  

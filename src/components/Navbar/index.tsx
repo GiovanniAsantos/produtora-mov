@@ -4,13 +4,17 @@ import {
   Box,
   BoxProps,
   Flex,
-  HStack,
   IconButton,
   Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Spacer,
   useDisclosure,
 } from "@chakra-ui/react";
 import { navLinks } from "../../routes/navLinks";
+import "./style.css";
 
 const NavLink = ({
   children,
@@ -49,22 +53,28 @@ export const Navbar: React.FC<NavbarProps> = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box bg={"black"} px={4} overflow="hidden" {...props}>
+    <Box
+      className="navbar-container"
+      bg={"black"}
+      px={4}
+      overflow="hidden"
+      {...props}
+    >
       <Flex
+        className="navbar-flex"
         paddingY={4}
         paddingX={0}
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <IconButton
-          size={"md"}
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label={"Open Menu"}
-          display={{ md: "none" }}
-          onClick={isOpen ? onClose : onOpen}
-        />
-        <Box flex="1" display="flex" justifyContent="center">
+        <Box
+          className="navbar-logo-container"
+          flex="1"
+          display="flex"
+          justifyContent="center"
+        >
           <img
+            className="navbar-logo"
             width="140px"
             height="auto"
             src={newLogoSimbolo}
@@ -72,8 +82,37 @@ export const Navbar: React.FC<NavbarProps> = ({
             style={{ maxWidth: "180px" }}
           />
         </Box>
-        <HStack
-          spacing={4}
+        {/* Dropdown menu para telas menores */}
+        <Box display={{ base: "block", md: "none" }}>
+          <Menu isOpen={isOpen} onClose={onClose}>
+            <MenuButton
+              backgroundColor="#4497B3" // Set the button color
+              _hover={{ backgroundColor: "#357f94" }}
+              as={IconButton}
+              icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+              aria-label={"Open Menu"}
+              onClick={isOpen ? onClose : onOpen}
+            />
+            <MenuList bg="#171717" borderColor="gray.700">
+              {navLinks.map((link) => (
+                <MenuItem
+                  key={link?.name}
+                  onClick={onClose}
+                  bg="#171717"
+                  color="white"
+                  _hover={{ bg: "#2c2c2c" }}
+                >
+                  <Link href={link?.href} color="white">
+                    {link?.name}
+                  </Link>
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
+        </Box>
+
+        {/* Links para telas maiores */}
+        <Box
           display={{ base: "none", md: "flex" }}
           flex="1"
           justifyContent="center"
@@ -83,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               {link?.name}
             </NavLink>
           ))}
-        </HStack>
+        </Box>
         <Spacer />
       </Flex>
     </Box>

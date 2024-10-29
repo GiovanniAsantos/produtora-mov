@@ -1,10 +1,30 @@
-import React from 'react'
-import { Box, SimpleGrid, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
-import MovLayout from '../../MovLayout'
+import React, { useState } from 'react';
+import { Box, SimpleGrid, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Select } from '@chakra-ui/react';
+import MovLayout from '../../MovLayout';
 
-type PortfolioProps = {}
+export const Portfolio: React.FC = () => {
+  const [selectedTab, setSelectedTab] = useState<string>('FIlmes Publicitários');
 
-export const Portfolio: React.FC<PortfolioProps> = () => {
+  const tabs = [
+    'FIlmes Publicitários',
+    'Vídeos Institucionais',
+    'Conteúdo',
+    'Varejo',
+    'REEL',
+  ];
+
+  const renderCards = () => (
+    <SimpleGrid columns={[1, 1, 2, 3]} spacing={5} width="100%">
+      {[...Array(3)].map((_, index) => (
+        <Box key={index} bg={'#292a2d'} width={'90%'} height={'300px'} mx="auto" display="flex" justifyContent="center" alignItems="center">
+          <Text color="white" textAlign={'center'}>
+            Aqui fica o conteúdo da panel específica para {selectedTab}
+          </Text>
+        </Box>
+      ))}
+    </SimpleGrid>
+  );
+
   return (
     <>
       <MovLayout maxWidthContainer="100vw">
@@ -25,175 +45,44 @@ export const Portfolio: React.FC<PortfolioProps> = () => {
           </Box>
           <br />
           <br />
-          <Tabs isFitted variant="enclosed">
-            <TabList>
-              <Tab>FIlmes Publicitários</Tab>
-              <Tab>Vídeos Institucionais</Tab>
-              <Tab>Conteúdo</Tab>
-              <Tab>Varejo</Tab>
-              <Tab>REEL</Tab>
-            </TabList>
-
-            <TabPanels>
-              <TabPanel>
-                <p>FIlmes Publicitários!</p>
-                <Box ml={20} mt={10} width={'90%'} justifyContent={'center'} alignItems={'center'}>
-                  <SimpleGrid columns={3}>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                  </SimpleGrid>{' '}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <p>Vídeos Institucionais!</p>
-                <Box ml={20} mt={10} width={'90%'} justifyContent={'center'} alignItems={'center'}>
-                  <SimpleGrid columns={3}>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                  </SimpleGrid>{' '}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <p>Conteudo!</p>
-                <Box ml={20} mt={10} width={'90%'} justifyContent={'center'} alignItems={'center'}>
-                  <SimpleGrid columns={3}>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                  </SimpleGrid>{' '}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <p>Varejo!</p>
-                <Box ml={20} mt={10} width={'90%'} justifyContent={'center'} alignItems={'center'}>
-                  <SimpleGrid columns={3}>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                  </SimpleGrid>{' '}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <p>REEL!</p>
-                <Box ml={20} mt={10} width={'90%'} justifyContent={'center'} alignItems={'center'}>
-                  <SimpleGrid columns={3}>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                    <Box bg={'#292a2d'} width={'400px'} height={'400px'}>
-                      <Text color="white" textAlign={'center'}>
-                        Aqui fica o conteúdo da panel específica
-                      </Text>
-                    </Box>
-                  </SimpleGrid>{' '}
-                </Box>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+          <Box display={{ base: 'none', md: 'block' }}>
+            <Tabs isFitted variant="enclosed">
+              <TabList>
+                {tabs.map((tab) => (
+                  <Tab key={tab} onClick={() => setSelectedTab(tab)}>
+                    {tab}
+                  </Tab>
+                ))}
+              </TabList>
+              <TabPanels>
+                {tabs.map((tab) => (
+                  <TabPanel key={tab}>
+                    <p>{tab}!</p>
+                    {renderCards()}
+                  </TabPanel>
+                ))}
+              </TabPanels>
+            </Tabs>
+          </Box>
+          <Box display={{ base: 'block', md: 'none' }} width="90%">
+            <Select
+              onChange={(e) => setSelectedTab(e.target.value)}
+              bg="#292a2d"
+              color="white"
+              _hover={{ bg: '#373b3f' }}
+              mb={4}
+              value={selectedTab} // Set the selected value for controlled component
+            >
+              {tabs.map((tab) => (
+                <option key={tab} value={tab} style={{ backgroundColor: '#292a2d', color: 'white' }}>
+                  {tab}
+                </option>
+              ))}
+            </Select>
+            {renderCards()}
+          </Box>
         </Box>
       </MovLayout>
     </>
-  )
-}
+  );
+};

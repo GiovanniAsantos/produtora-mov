@@ -1,58 +1,39 @@
-import React from 'react'
-import { Box, Stack, Text } from '@chakra-ui/react'
-import newLogo from '../../assets/img/newLogo.png'
-import heroMovie from '../../assets/videos/business.mp4'
-import WhatsAppButton from '../WhatsappButton'
-import InstagramButton from '../InstagramButton'
+import React from "react";
+import { Box, Stack, Text } from "@chakra-ui/react";
+import newLogo from "../../assets/img/newLogo.png";
+import heroMovie from "../../assets/videos/business.mp4";
+import WhatsAppButton from "../WhatsappButton";
+import InstagramButton from "../InstagramButton";
+import './style.css'
 
-type HeroProps = {}
+type HeroProps = {};
 
 export const Hero: React.FC<HeroProps> = () => {
   return (
-    <>
-      <Box zIndex={1} position="relative" width="100%" height="100vh" display="flex" alignItems="center" justifyContent="center" overflow="hidden">
-        <Box
-          as="video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          sx={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            top: 0,
-            left: 0,
-            zIndex: -1
-          }}>
-          <source src={heroMovie} type="video/mp4" />
-          Seu navegador não suporta o elemento de vídeo.
-        </Box>
-        <Stack
-          position="absolute"
-          width="100vw"
-          height="110px"
-          bgColor="rgba(30, 30, 30, 0.066)"
-          backdropFilter="blur(30px)"
-          display="flex"
-          alignItems="center"
-          justifyContent="center">
-          <img width="30%" height="auto" src={newLogo} alt="Logo" />
-          <Text
-            textShadow={'0px 0px 10px rgba(0, 0, 0, 0.5), 0px 0px 90px rgba(0, 0, 0, 0.5), 0px 0px 30px rgba(0, 0, 0, 0.5)'}
-            fontWeight={400}
-            textColor={'white'}
-            letterSpacing={6}
-            fontSize={'20px'}>
-            Produzindo Filmes que Impulsionam Negócios
-          </Text>
-        </Stack>
-        <Box position="absolute" bottom={160} justifyContent={"space-around"} display={"flex"} width={'200px'}>
-          <WhatsAppButton phoneNumber="85996285377" />
-          <InstagramButton username='mov_produtora' />
-        </Box>
+    <Box
+      zIndex={1}
+      position="relative"
+      width="100%"
+      height="100vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      overflow="hidden"
+    >
+      <Box as="video" autoPlay loop muted playsInline className="hero-video">
+        <source src={heroMovie} type="video/mp4" />
+        Seu navegador não suporta o elemento de vídeo.
       </Box>
-    </>
-  )
-}
+      <Stack position="absolute" width="100vw" className="hero-stack">
+        <img className="hero-logo" src={newLogo} alt="Logo" />
+        <Text className="hero-text">
+          Produzindo Filmes que Impulsionam Negócios
+        </Text>
+      </Stack>
+      <Box className="hero-buttons">
+        <WhatsAppButton phoneNumber="85996285377" />
+        <InstagramButton username="mov_produtora" />
+      </Box>
+    </Box>
+  );
+};

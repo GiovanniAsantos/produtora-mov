@@ -1,111 +1,51 @@
-import { Box, SimpleGrid, Text } from '@chakra-ui/react'
-import React from 'react'
-import MovLayout from '../../../../components/layouts/MovLayout'
+import { Box, Button, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
+import MovLayout from "../../../../components/layouts/MovLayout";
+import "./style.css";
 
-type ClientsProps = {}
+type ClientsProps = {};
 
 export const Clients: React.FC<ClientsProps> = () => {
+  const [visibleCards, setVisibleCards] = useState(3); // Start by showing 3 cards
+  const totalCards = 15; // Total number of cards
+
+  // Function to load more cards
+  const loadMoreCards = () => {
+    setVisibleCards((prev) => Math.min(prev + 3, totalCards)); // Increase by 3, but don't exceed total
+  };
+
   return (
     <>
       <MovLayout maxWidthContainer="100vw">
-        <Box
-          marginTop={'25vh'}
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          alignItems="center"
-          textAlign="center"
-          width="100%"
-          backgroundColor="#171717"
-          color="white"
-          paddingTop="0px">
-          <Box width="100%" alignItems={'center'} justifyContent={'center'} textAlign={'center'}>
-            <h1 style={{ fontSize: '50px' }}>Clients</h1>
-            <hr style={{ color: 'white', width: '80px', marginLeft: '47%' }} />
+        <Box className="clients-container">
+          <Box className="clients-title">
+            <h1>Clients</h1>
+            <hr />
           </Box>
           <br />
           <br />
-          <Box ml={20} mt={10} width={'90%'} justifyContent={'center'} alignItems={'center'}>
-            <SimpleGrid columns={5} row={3}>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
+          <Box className="clients-grid">
+            {[...Array(visibleCards)].map((_, index) => (
+              <Box key={index} className="clients-card">
+                <Text className="clients-card-text">
                   Aqui fica a imagem do cliente
                 </Text>
               </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-              <Box bg={'#292a2d'} width={'200px'} height={'200px'}>
-                <Text color="white" textAlign={'center'}>
-                  Aqui fica a imagem do cliente
-                </Text>
-              </Box>
-            </SimpleGrid>{' '}
+            ))}
           </Box>
+          {visibleCards < totalCards && ( // Only show the button if there are more cards to load
+            <Button
+              onClick={loadMoreCards}
+              backgroundColor="#4497B3" // Set the button color
+              color="white" // Ensure text color is white
+              marginTop="50px"
+              _hover={{ backgroundColor: "#357f94" }}
+            >
+              Load More
+            </Button>
+          )}
         </Box>
       </MovLayout>
     </>
-  )
-}
+  );
+};
