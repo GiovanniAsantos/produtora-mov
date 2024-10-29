@@ -75,11 +75,11 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <img
             className="navbar-logo"
-            width="140px"
+            width="50px" // Diminua pela metade
             height="auto"
             src={newLogoSimbolo}
             alt="Logo"
-            style={{ maxWidth: "180px" }}
+            style={{ maxWidth: "70px" }} // Diminua a largura máxima pela metade também
           />
         </Box>
         {/* Dropdown menu para telas menores */}
