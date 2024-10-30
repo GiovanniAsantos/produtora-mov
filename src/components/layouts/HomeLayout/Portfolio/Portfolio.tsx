@@ -1,109 +1,122 @@
-import React, { useState } from 'react';
-import { Box, SimpleGrid, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Select, Button, useBreakpointValue } from '@chakra-ui/react';
-import MovLayout from '../../MovLayout';
+import React, { useState } from "react";
+import {
+  Box,
+  SimpleGrid,
+  Button,
+  useBreakpointValue,
+  Image,
+} from "@chakra-ui/react";
+import MovLayout from "../../MovLayout";
+import PlayIcon from "../../../../assets/img/playIcon.png";
 
 export const Portfolio: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState<string>('Filmes Publicitários');
-  const [visibleCards, setVisibleCards] = useState(3); // Start by showing 3 cards
-  const totalCards = 15; // Total number of cards (you can change this as needed)
+  const [visibleCards, setVisibleCards] = useState(3);
+  const showAllCards =
+    useBreakpointValue({ base: false, md: true, lg: true }) || false;
 
-  const tabs = [
-    'Filmes Publicitários',
-    'Vídeos Institucionais',
-    'Conteúdo',
-    'Varejo',
-    'REEL',
+  const cardHeight = useBreakpointValue({ base: "200px", md: "240px" });
+
+  const videoData = [
+    { id: "iZMxC7wUExo", title: "Exemplo de Vídeo 1" },
+    { id: "wjYzP8HuYC4", title: "Exemplo de Vídeo 2" },
+    { id: "3Khjh8tKNmw", title: "Exemplo de Vídeo 3" },
+    { id: "Zg6TYH25HVI", title: "Exemplo de Vídeo 4" },
+    { id: "I8Y0-CQvmSc", title: "Exemplo de Vídeo 5" },
+    { id: "ixrFududowI", title: "Exemplo de Vídeo 6" },
   ];
 
-  const loadMoreCards = () => {
-    setVisibleCards((prev) => Math.min(prev + 3, totalCards)); // Increase by 3, but don't exceed total
+  const toggleCardsVisibility = () => {
+    setVisibleCards((prev) => {
+      if (prev >= videoData.length) {
+        return Math.max(3, prev - 3);
+      } else {
+        return Math.min(prev + 3, videoData.length);
+      }
+    });
   };
-
-  // Determine how many cards to show based on screen size
-  const showAllCards = useBreakpointValue({ base: false, md: true, lg: true }) || false;
 
   const renderCards = () => (
     <SimpleGrid columns={[1, 1, 2, 3]} spacing={5} width="100%">
-      {[...Array(showAllCards ? totalCards : Math.min(visibleCards, totalCards))].map((_, index) => (
-        <Box key={index} bg={'#292a2d'} width={'90%'} height={'300px'} mx="auto" display="flex" justifyContent="center" alignItems="center">
-          <Text color="white" textAlign={'center'}>
-            Aqui fica o conteúdo da panel específica para {selectedTab}
-          </Text>
-        </Box>
-      ))}
+      {videoData
+        .slice(0, showAllCards ? videoData.length : visibleCards)
+        .map((video, index) => (
+          <Box
+            key={index}
+            position="relative"
+            bg="#292a2d"
+            width="90%"
+            height={cardHeight}
+            mx="auto"
+            borderRadius="8px"
+            overflow="hidden"
+            transition="transform 0.3s ease"
+            _hover={{ transform: "scale(1.05)" }}
+          >
+            <a
+              href={`https://www.youtube.com/watch?v=${video.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src={`https://img.youtube.com/vi/${video.id}/0.jpg`}
+                alt={`Thumbnail do ${video.title}`}
+                width="100%"
+                height="100%"
+                objectFit="cover"
+              />
+              <Box
+                position="absolute"
+                top="50%"
+                left="50%"
+                transform="translate(-50%, -50%)"
+                bg="rgba(0, 0, 0, 0.6)"
+                borderRadius="50%"
+                width="50px"
+                height="50px"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Image src={PlayIcon} alt="Play" width="24px" height="24px" />
+              </Box>
+            </a>
+          </Box>
+        ))}
     </SimpleGrid>
   );
 
   return (
-    <>
-      <MovLayout maxWidthContainer="100vw">
-        <Box
-          marginTop={'25vh'}
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          alignItems="center"
-          textAlign="center"
-          width="100%"
-          backgroundColor="#171717"
-          color="white"
-          paddingTop="0px">
-          <Box width="100%" alignItems={'center'} justifyContent={'center'} textAlign={'center'}>
-            <h1 style={{ fontSize: '50px' }}>Portfólio</h1>
-            <hr style={{ color: 'white', width: '80px', marginLeft: '47%' }} />
-          </Box>
-          <br />
-          <br />
-          <Box display={{ base: 'none', md: 'block' }}>
-            <Tabs isFitted variant="enclosed">
-              <TabList>
-                {tabs.map((tab) => (
-                  <Tab key={tab} onClick={() => setSelectedTab(tab)}>
-                    {tab}
-                  </Tab>
-                ))}
-              </TabList>
-              <TabPanels>
-                {tabs.map((tab) => (
-                  <TabPanel key={tab}>
-                    <p>{tab}!</p>
-                    {renderCards()}
-                  </TabPanel>
-                ))}
-              </TabPanels>
-            </Tabs>
-          </Box>
-          <Box display={{ base: 'block', md: 'none' }} width="90%">
-            <Select
-              onChange={(e) => setSelectedTab(e.target.value)}
-              bg="#292a2d"
-              color="white"
-              _hover={{ bg: '#373b3f' }}
-              mb={4}
-              value={selectedTab} // Set the selected value for controlled component
-            >
-              {tabs.map((tab) => (
-                <option key={tab} value={tab} style={{ backgroundColor: '#292a2d', color: 'white' }}>
-                  {tab}
-                </option>
-              ))}
-            </Select>
-            {renderCards()}
-          </Box>
-          {/* Only show the button if there are more cards to load and the screen size is small */}
-          {!showAllCards && visibleCards < totalCards && (
-            <Button
-              onClick={loadMoreCards}
-              backgroundColor="#4497B3" // Set the button color
-              color="white" // Ensure text color is white
-              marginTop="20px"
-              _hover={{ backgroundColor: '#357f94' }} // Optional: Add a hover effect
-            >
-              Load More
-            </Button>
-          )}
+    <MovLayout maxWidthContainer="100vw">
+      <Box
+        marginTop="25vh"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        textAlign="center"
+        width="100%"
+        backgroundColor="#171717"
+        color="white"
+        paddingTop="0px"
+      >
+        <Box textAlign="center">
+          <h1 style={{ fontSize: "50px" }}>Portfólio</h1>
+          <hr style={{ color: "white", width: "80px", margin: "10px auto" }} />
         </Box>
-      </MovLayout>
-    </>
+        <Box width="100%" mt="4">
+          {renderCards()}
+        </Box>
+        {!showAllCards && (
+          <Button
+            onClick={toggleCardsVisibility}
+            backgroundColor="#4497B3"
+            color="white"
+            marginTop="20px"
+            _hover={{ backgroundColor: "#357f94" }}
+          >
+            {visibleCards >= videoData.length ? "Mostrar menos" : "Mostrar mais"}
+          </Button>
+        )}
+      </Box>
+    </MovLayout>
   );
 };
