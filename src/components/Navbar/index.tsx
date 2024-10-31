@@ -1,17 +1,17 @@
 import newLogoSimbolo from "../../assets/img/newLogoSimbolo.png";
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+// import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
-  IconButton,
+  // IconButton,
   Link,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  useDisclosure,
+  // Menu,
+  // MenuButton,
+  // MenuItem,
+  // MenuList,
+  // useDisclosure,
 } from "@chakra-ui/react";
-import { navLinks } from "../../routes/navLinks";
+// import { navLinks } from "../../routes/navLinks";
 import "./style.css";
 
 const NavLink = ({
@@ -50,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   hiddenLogo = false,
   ...props
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box
@@ -84,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </Box>
 
         {/* Menu hambúrguer alinhado à direita para telas menores */}
-        <Box display={{ base: "block", md: "none" }}>
+        {/* <Box display={{ base: "block", md: "none" }}>
           <Menu isOpen={isOpen} onClose={onClose}>
             <MenuButton
               backgroundColor="#4497B3"
@@ -110,16 +110,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </MenuList>
           </Menu>
-        </Box>
+        </Box> */}
 
         {/* Links para telas maiores */}
-        <Box display={{ base: "none", md: "flex" }} flex="1" justifyContent="center">
+        {/* <Box display={{ base: "none", md: "flex" }} flex="1" justifyContent="center">
           {navLinks.map((link) => (
             <NavLink href={link?.href} key={link?.name}>
               {link?.name}
             </NavLink>
           ))}
-        </Box>
+        </Box> */}
       </Flex>
     </Box>
   );
