@@ -5,16 +5,22 @@ import {
   Button,
   useBreakpointValue,
   Image,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalBody,
 } from "@chakra-ui/react";
 import MovLayout from "../../MovLayout";
 import PlayIcon from "../../../../assets/img/playIcon.png";
 
 export const Portfolio: React.FC = () => {
   const [visibleCards, setVisibleCards] = useState(3);
-  const showAllCards =
-    useBreakpointValue({ base: false, md: true, lg: true }) || false;
-
+  const showAllCards = useBreakpointValue({ base: false, md: true, lg: true }) || false;
   const cardHeight = useBreakpointValue({ base: "200px", md: "240px" });
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   const videoData = [
     { id: "iZMxC7wUExo", title: "Exemplo de Vídeo 1" },
@@ -35,6 +41,11 @@ export const Portfolio: React.FC = () => {
     });
   };
 
+  const openModal = (videoId: string) => {
+    setSelectedVideo(videoId);
+    setIsModalOpen(true);
+  };
+
   const renderCards = () => (
     <SimpleGrid columns={[1, 1, 2, 3]} spacing={5} width="100%">
       {videoData
@@ -51,35 +62,31 @@ export const Portfolio: React.FC = () => {
             overflow="hidden"
             transition="transform 0.3s ease"
             _hover={{ transform: "scale(1.05)" }}
+            onClick={() => openModal(video.id)}
+            cursor="pointer"
           >
-            <a
-              href={`https://www.youtube.com/watch?v=${video.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Image
+              src={`https://img.youtube.com/vi/${video.id}/0.jpg`}
+              alt={`Thumbnail do ${video.title}`}
+              width="100%"
+              height="100%"
+              objectFit="cover"
+            />
+            <Box
+              position="absolute"
+              top="50%"
+              left="50%"
+              transform="translate(-50%, -50%)"
+              bg="rgba(0, 0, 0, 0.6)"
+              borderRadius="50%"
+              width="50px"
+              height="50px"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
             >
-              <Image
-                src={`https://img.youtube.com/vi/${video.id}/0.jpg`}
-                alt={`Thumbnail do ${video.title}`}
-                width="100%"
-                height="100%"
-                objectFit="cover"
-              />
-              <Box
-                position="absolute"
-                top="50%"
-                left="50%"
-                transform="translate(-50%, -50%)"
-                bg="rgba(0, 0, 0, 0.6)"
-                borderRadius="50%"
-                width="50px"
-                height="50px"
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Image src={PlayIcon} alt="Play" width="24px" height="24px" />
-              </Box>
-            </a>
+              <Image src={PlayIcon} alt="Play" width="24px" height="24px" />
+            </Box>
           </Box>
         ))}
     </SimpleGrid>
@@ -116,6 +123,27 @@ export const Portfolio: React.FC = () => {
             {visibleCards >= videoData.length ? "Mostrar menos" : "Mostrar mais"}
           </Button>
         )}
+
+        {/* Modal para exibir o vídeo */}
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isCentered>
+          <ModalOverlay />
+          <ModalContent maxW="800px">
+            <ModalCloseButton color="white" />
+            <ModalBody p={0}>
+              {selectedVideo && (
+                <iframe
+                  width="100%"
+                  height="450px"
+                  src={`https://www.youtube.com/embed/${selectedVideo}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              )}
+            </ModalBody>
+          </ModalContent>
+        </Modal>
       </Box>
     </MovLayout>
   );

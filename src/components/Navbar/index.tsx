@@ -2,7 +2,6 @@ import newLogoSimbolo from "../../assets/img/newLogoSimbolo.png";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
-  BoxProps,
   Flex,
   IconButton,
   Link,
@@ -10,7 +9,6 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Spacer,
   useDisclosure,
 } from "@chakra-ui/react";
 import { navLinks } from "../../routes/navLinks";
@@ -42,8 +40,9 @@ const NavLink = ({
   </Link>
 );
 
-interface NavbarProps extends BoxProps {
+interface NavbarProps {
   hiddenLogo?: boolean;
+  bgColor?: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -63,30 +62,31 @@ export const Navbar: React.FC<NavbarProps> = ({
       <Flex
         className="navbar-flex"
         paddingY={4}
-        paddingX={0}
         alignItems={"center"}
         justifyContent={"space-between"}
       >
+        {/* Logo alinhada à esquerda */}
         <Box
-          className="navbar-logo-container"
-          flex="1"
           display="flex"
-          justifyContent="center"
+          alignItems="center"
         >
-          <img
-            className="navbar-logo"
-            width="50px" // Diminua pela metade
-            height="auto"
-            src={newLogoSimbolo}
-            alt="Logo"
-            style={{ maxWidth: "70px" }} // Diminua a largura máxima pela metade também
-          />
+          {!hiddenLogo && (
+            <img
+              className="navbar-logo"
+              width="50px"
+              height="auto"
+              src={newLogoSimbolo}
+              alt="Logo"
+              style={{ maxWidth: "70px" }}
+            />
+          )}
         </Box>
-        {/* Dropdown menu para telas menores */}
+
+        {/* Menu hambúrguer alinhado à direita para telas menores */}
         <Box display={{ base: "block", md: "none" }}>
           <Menu isOpen={isOpen} onClose={onClose}>
             <MenuButton
-              backgroundColor="#4497B3" // Set the button color
+              backgroundColor="#4497B3"
               _hover={{ backgroundColor: "#357f94" }}
               as={IconButton}
               icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -112,18 +112,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         </Box>
 
         {/* Links para telas maiores */}
-        <Box
-          display={{ base: "none", md: "flex" }}
-          flex="1"
-          justifyContent="center"
-        >
+        <Box display={{ base: "none", md: "flex" }} flex="1" justifyContent="center">
           {navLinks.map((link) => (
             <NavLink href={link?.href} key={link?.name}>
               {link?.name}
             </NavLink>
           ))}
         </Box>
-        <Spacer />
       </Flex>
     </Box>
   );

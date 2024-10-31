@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
     <Box backgroundColor={'#171717'} zIndex={-1}>
       <Stack position={'relative'}>
         <Box position={'absolute'} width={'100%'} zIndex={1000}>
-          <Navbar hiddenLogo bgColor={'transparent'} />
+          <Navbar bgColor={'transparent'} />
         </Box>
         <Hero />
         <SmallAbout />
