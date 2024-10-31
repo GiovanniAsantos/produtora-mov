@@ -4,7 +4,7 @@ import {
   Box,
   Flex,
   // IconButton,
-  Link,
+  // Link,
   // Menu,
   // MenuButton,
   // MenuItem,
@@ -14,31 +14,31 @@ import {
 // import { navLinks } from "../../routes/navLinks";
 import "./style.css";
 
-const NavLink = ({
-  children,
-  href,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) => (
-  <Link
-    px={8}
-    py={1}
-    color={"gray.50"}
-    textDecoration={"none"}
-    rounded={"full"}
-    fontWeight={600}
-    fontSize={"md"}
-    letterSpacing={1}
-    _hover={{
-      bgColor: "rgba(144, 144, 144, 0.117)",
-      backdropFilter: "blur(100px)",
-    }}
-    href={href}
-  >
-    {children}
-  </Link>
-);
+// const NavLink = ({
+//   children,
+//   href,
+// }: {
+//   href: string;
+//   children: React.ReactNode;
+// }) => (
+//   <Link
+//     px={8}
+//     py={1}
+//     color={"gray.50"}
+//     textDecoration={"none"}
+//     rounded={"full"}
+//     fontWeight={600}
+//     fontSize={"md"}
+//     letterSpacing={1}
+//     _hover={{
+//       bgColor: "rgba(144, 144, 144, 0.117)",
+//       backdropFilter: "blur(100px)",
+//     }}
+//     href={href}
+//   >
+//     {children}
+//   </Link>
+// );
 
 interface NavbarProps {
   hiddenLogo?: boolean;
