@@ -1,3 +1,15 @@
+/* Animação de fade-in da esquerda */
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .small-about-container {
   height: 100vh;
   display: flex;
@@ -9,66 +21,54 @@
   background-color: #171717;
   color: white;
   padding-top: 20px;
-  /* Espaçamento no topo */
+  opacity: 0; /* Esconde inicialmente */
+  transform: translateX(-50px); /* Posição inicial para a animação */
 }
 
+.small-about-container.visible {
+  animation: fadeInFromLeft 1s ease-in-out forwards;
+}
+
+/* Estilos para o checklist */
 .custom-checklist {
   list-style-type: none;
-  /* Remove as bolinhas padrão */
   padding: 0;
-  /* Remove o padding padrão da lista */
 }
 
 .custom-checklist li {
   position: relative;
-  /* Para posicionar o ícone de check */
   padding-left: 30px;
-  /* Espaçamento à esquerda para o ícone */
   margin-bottom: 10px;
-  /* Espaçamento entre os itens */
 }
 
 .custom-checklist li::before {
   content: "✓";
-  /* Sinal de check */
   position: absolute;
-  /* Posiciona o ícone em relação ao item */
   left: 0;
-  /* Ajusta a posição do ícone */
   color: green;
-  /* Cor do sinal de check */
   font-weight: bold;
-  /* Negrito para destaque */
   font-size: 1.2em;
-  /* Tamanho do ícone */
 }
 
 .small-about-header {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* Coloca o título e o divider em coluna */
   align-items: center;
-  /* Centraliza os itens */
 }
 
 .small-about-title {
   font-size: 50px;
-  /* Tamanho do título */
   margin: 0;
-  /* Remove margens padrão */
 }
 
 .small-about-divider {
   color: white;
   width: 80px;
   margin: 10px 0;
-  /* Espaçamento vertical */
 }
 
 .small-about-description {
-  height: 100vh;
-  /* Altura para a descrição */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -83,9 +83,7 @@
 
 .small-about-text {
   font-size: 20px;
-  /* Tamanho do texto */
   margin: 0;
-  /* Remove margens padrão */
   font-family: 'Montserrat', sans-serif;
   text-align: left;
 }
@@ -102,21 +100,17 @@
 @media (max-width: 768px) {
   .small-about-title {
     font-size: 30px;
-    /* Reduz o tamanho do título para telas menores */
   }
 
   .small-about-text {
     font-size: 16px;
-    /* Reduz o tamanho do texto para telas menores */
   }
 
   .small-about-divider {
     width: 60px;
-    /* Reduz a largura do divisor para telas menores */
   }
 
   .small-about-container {
     padding-top: 10px;
-    /* Ajuste no padding superior para telas menores */
   }
 }
