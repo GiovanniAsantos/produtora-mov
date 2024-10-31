@@ -43,6 +43,7 @@ const NavLink = ({
 interface NavbarProps {
   hiddenLogo?: boolean;
   bgColor?: string;
+  width?: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({

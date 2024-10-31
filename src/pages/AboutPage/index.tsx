@@ -11,7 +11,7 @@ type AboutPageProps = {}
 const AboutPage: React.FC<AboutPageProps> = () => {
   return (
     <MovLayout maxWidthContainer="100vw">
-      <Navbar backgroundColor={'#171717'} width={'100%'} />
+      <Navbar bgColor={'#171717'} width={'100%'} />
       <Box display="block" backgroundColor={'#171717'} textAlign={'left'}>
         <Box width={'100%'} height={600} bgGradient="linear(to-b, transparent, #171717) !important">
           <Image src={`${studioPhoto}`} alt="Imagem de Exemplo" shadow="lg" objectFit="cover" width="100%" height="100%" />
