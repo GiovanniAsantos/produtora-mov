@@ -27,7 +27,7 @@ export const Hero: React.FC<HeroProps> = () => {
       <Stack position="absolute" width="100vw" className="hero-stack">
         <img className="hero-logo" src={newLogo} alt="Logo" />
         <Text className="hero-text">
-          Produzindo Filmes que Impulsionam Negócios
+        Transformando ideias em conteúdos incríveis!
         </Text>
       </Stack>
       <Box className="hero-buttons">

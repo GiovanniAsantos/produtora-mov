@@ -9,7 +9,7 @@
 }
 
 .hero-stack {
-    height: 110px;
+    height: 210px;
     /* Altura padrão para telas médias e grandes */
     background-color: rgba(30, 30, 30, 0.066);
     backdrop-filter: blur(30px);
@@ -26,7 +26,7 @@
 .hero-logo {
     width: auto;
     /* Mantém o tamanho padrão da logo */
-    max-width: 180px;
+    max-width: 460px;
     /* Tamanho máximo da logo */
     height: auto;
     /* Mantém a proporção da logo */
@@ -48,8 +48,17 @@
 /* Estilos responsivos */
 @media (max-width: 768px) {
     .hero-stack {
-        height: 120px;
+        height: 170px;
         /* Altura para telas menores */
+    }
+
+    .hero-logo {
+        width: auto;
+        /* Mantém o tamanho padrão da logo */
+        max-width: 300px;
+        /* Tamanho máximo da logo */
+        height: auto;
+        /* Mantém a proporção da logo */
     }
 
     .hero-text {
