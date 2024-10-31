@@ -16,9 +16,10 @@ import PlayIcon from "../../../../assets/img/playIcon.png";
 
 export const Portfolio: React.FC = () => {
   const [visibleCards, setVisibleCards] = useState(3);
-  const showAllCards = useBreakpointValue({ base: false, md: true, lg: true }) || false;
-  const cardHeight = useBreakpointValue({ base: "200px", md: "240px" });
-  
+  const showAllCards =
+    useBreakpointValue({ base: false, md: true, lg: true }) || false;
+  const cardHeight = useBreakpointValue({ base: "200px", md: "199px" });
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
@@ -120,20 +121,35 @@ export const Portfolio: React.FC = () => {
             marginTop="20px"
             _hover={{ backgroundColor: "#357f94" }}
           >
-            {visibleCards >= videoData.length ? "Mostrar menos" : "Mostrar mais"}
+            {visibleCards >= videoData.length
+              ? "Mostrar menos"
+              : "Mostrar mais"}
           </Button>
         )}
 
         {/* Modal para exibir o vídeo */}
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isCentered>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          isCentered
+        >
           <ModalOverlay />
-          <ModalContent maxW="800px">
+          <ModalContent
+            justifyContent={"center"}
+            paddingBottom={"50px"}
+            paddingTop={"50px"}
+            height={"500px"}
+            maxW={{ base: "90%", md: "800px" }} // Define a largura máxima
+            marginX="auto" // Centraliza horizontalmente
+            mx={3} // Padding mínimo nas bordas
+            backgroundColor={"black"}
+          >
             <ModalCloseButton color="white" />
             <ModalBody p={0}>
               {selectedVideo && (
                 <iframe
                   width="100%"
-                  height="450px"
+                  height="400px"
                   src={`https://www.youtube.com/embed/${selectedVideo}`}
                   title="YouTube video player"
                   frameBorder="0"
