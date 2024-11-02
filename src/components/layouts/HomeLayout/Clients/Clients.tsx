@@ -1,4 +1,4 @@
-import { Box, Text, SimpleGrid } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid, Image } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import MovLayout from "../../../../components/layouts/MovLayout";
 import "./style.css";
@@ -63,12 +63,16 @@ export const Clients: React.FC = () => {
               // Ajuste no Box dos cards na seção Clients
               <Box
                 key={index}
+                display={"flex"}
+                flexDirection={"column"}
+                alignItems={"center"}
+                justifyContent={"center"} // Altera de space-around para center
+                borderRadius={"8px"}
                 position="relative"
                 bg="#292a2d"
                 width={["250px", "250px", "300px", "300px"]} // Largura responsiva
                 height={["250px", "250px", "300px", "300px"]} // Altura responsiva
                 mx="auto"
-                borderRadius="50%" // Borda arredondada
                 overflow="hidden"
                 transition={`transform 0.8s ease, opacity 0.3s ease`} // Diminui a duração da transição
                 transform={
@@ -84,13 +88,28 @@ export const Clients: React.FC = () => {
                 }
                 cursor="pointer"
               >
+                <Box
+                  width={"120px"}
+                  height={"120px"}
+                  borderRadius={"50%"}
+                  overflow="hidden"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  marginBottom="10px" // Adiciona espaço abaixo da imagem
+                >
+                  <Image
+                    src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9wXcLNDmqZn8Z2L8fPBHOZhb9DAwBz8Kkuw&s`}
+                    alt=""
+                    objectFit="cover" // Faz a imagem ocupar todo o espaço
+                    width="100%"
+                    height="100%"
+                  />
+                </Box>
                 <Text
-                  position="absolute"
-                  top="50%"
-                  left="50%"
-                  transform="translate(-50%, -50%)"
                   color="white"
                   textAlign="center"
+                  fontSize="16px" // Tamanho da fonte ajustável
                 >
                   {client}
                 </Text>

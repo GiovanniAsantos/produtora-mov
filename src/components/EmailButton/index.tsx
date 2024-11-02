@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonProps, Icon } from "@chakra-ui/react";
+import { Button, ButtonProps, Icon, Text } from "@chakra-ui/react";
 import { FaEnvelope } from "react-icons/fa";
 
 interface EmailButtonProps extends ButtonProps {
@@ -27,7 +27,7 @@ const EmailButton: React.FC<EmailButtonProps> = ({
       onClick={handleClick}
       colorScheme="red"
       bg="red.400"
-      _hover={{bg:"red.500"}}
+      _hover={{ bg: "red.500" }}
       color="white"
       display="flex"
       alignItems="center"
@@ -38,7 +38,8 @@ const EmailButton: React.FC<EmailButtonProps> = ({
       border={"2px solid white"}
       {...props}
     >
-      <Icon as={FaEnvelope} boxSize="2em" />
+      <Icon as={FaEnvelope} boxSize="2em" marginRight="8px" />{" "}
+      <Text>Enviar</Text>
     </Button>
   );
 };
