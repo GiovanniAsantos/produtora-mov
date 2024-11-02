@@ -112,7 +112,7 @@ export const Portfolio: React.FC = () => {
     <MovLayout maxWidthContainer="100vw">
       <Box
         ref={portfolioRef}
-        marginTop="25vh"
+        marginTop="10vh"
         display="flex"
         flexDirection="column"
         alignItems="center"

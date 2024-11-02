@@ -20,7 +20,7 @@
   width: 100%;
   background-color: #171717;
   color: white;
-  padding-top: 20px;
+  padding-top: 0px;
   opacity: 0; /* Esconde inicialmente */
   transform: translateX(-50px); /* Posição inicial para a animação */
 }

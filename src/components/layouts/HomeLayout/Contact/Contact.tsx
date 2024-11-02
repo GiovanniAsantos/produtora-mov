@@ -44,9 +44,6 @@ export const Contact: React.FC<ContactProps> = () => {
               <h1 style={{ fontSize: "50px" }}>Contato</h1>
             <hr style={{ color: "white", width: "80px", margin: "10px auto" }} />
             </Box>
-            <br />
-            <p>Av Oliveira Paiva, 421, Fortaleza, Brazil 60821802</p>
-            <p>(85)99639-4456</p>
           </Box>
           <br />
           <br />
@@ -77,7 +74,7 @@ export const Contact: React.FC<ContactProps> = () => {
               />
               <EmailButton
                 emailAddress="Hansley@movprodutora.com.br"
-                subject="Contato via Formulário"
+                subject="Contato via Site MOV"
                 body={emailBody}
               />
             </Stack>

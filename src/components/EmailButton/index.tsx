@@ -37,9 +37,9 @@ const EmailButton: React.FC<EmailButtonProps> = ({
       rounded={"full"}
       textTransform={"none"}
       onClick={handleClick}
-      colorScheme="red"
-      bg="red.400"
-      _hover={{ bg: "red.500" }}
+      colorScheme="green"
+      bg="green.400"
+      _hover={{ bg: "green.500" }}
       color="white"
       display="flex"
       alignItems="center"
@@ -50,7 +50,7 @@ const EmailButton: React.FC<EmailButtonProps> = ({
       border={"2px solid white"}
       {...props}
     >
-      <Icon as={FaEnvelope} boxSize="2em" marginRight="8px" />
+      <Icon as={FaEnvelope} boxSize="1.3em" marginRight="8px" />
       <Text>Enviar</Text>
     </Button>
   );

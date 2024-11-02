@@ -51,7 +51,7 @@ export const Clients: React.FC = () => {
     <MovLayout maxWidthContainer="100vw">
       <Box
         ref={clientsRef}
-        marginTop="25vh"
+        marginTop="10vh"
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -59,7 +59,7 @@ export const Clients: React.FC = () => {
         width="100%"
         backgroundColor="#171717"
         color="white"
-        paddingTop="0px"
+        padding="20px" // Padronize o padding aqui
       >
         <Box textAlign="center">
           <h1 style={{ fontSize: "50px" }}>Clients</h1>
@@ -68,30 +68,27 @@ export const Clients: React.FC = () => {
         <Box width="100%" mt="4">
           <SimpleGrid columns={[1, 1, 2, 3]} spacing={5}>
             {clientNames.map((client, index) => (
-              // Ajuste no Box dos cards na seção Clients
               <Box
                 key={index}
                 display={"flex"}
                 flexDirection={"column"}
                 alignItems={"center"}
-                justifyContent={"center"} // Altera de space-around para center
+                justifyContent={"center"}
                 borderRadius={"8px"}
                 position="relative"
                 bg="#292a2d"
-                width={["250px", "250px", "300px", "300px"]} // Largura responsiva
-                height={["250px", "250px", "300px", "300px"]} // Altura responsiva
+                width={["350px", "430px", "380px", "400px"]}
+                height={["250px", "250px", "300px", "300px"]}
                 mx="auto"
                 overflow="hidden"
-                transition={`transform 0.8s ease, opacity 0.3s ease`} // Diminui a duração da transição
-                transform={
-                  animationTriggered ? `translateX(0)` : `translateX(-10%)`
-                } // Muda o deslocamento
+                transition={`transform 0.8s ease, opacity 0.3s ease`}
+                transform={animationTriggered ? `translateX(0)` : `translateX(-10%)`}
                 opacity={animationTriggered ? 1 : 0}
                 animation={
                   animationTriggered
                     ? index < 3
-                      ? "fadeInFromLeft 0.8s forwards" // Aumenta a duração para 0.8s
-                      : "fadeInFromRight 0.8s forwards" // Aumenta a duração para 0.8s
+                      ? "fadeInFromLeft 0.8s forwards"
+                      : "fadeInFromRight 0.8s forwards"
                     : "none"
                 }
                 cursor="pointer"
@@ -104,12 +101,12 @@ export const Clients: React.FC = () => {
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
-                  marginBottom="10px" // Adiciona espaço abaixo da imagem
+                  marginBottom="10px"
                 >
                   <Image
                     src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9wXcLNDmqZn8Z2L8fPBHOZhb9DAwBz8Kkuw&s`}
                     alt=""
-                    objectFit="cover" // Faz a imagem ocupar todo o espaço
+                    objectFit="cover"
                     width="100%"
                     height="100%"
                   />
@@ -117,14 +114,14 @@ export const Clients: React.FC = () => {
                 <Text
                   color="white"
                   textAlign="center"
-                  fontSize="16px" // Tamanho da fonte ajustável
+                  fontSize="16px"
                 >
                   {client}
                 </Text>
                 <Text
                   color="white"
                   textAlign="center"
-                  fontSize="16px" // Tamanho da fonte ajustável
+                  fontSize="16px"
                 >
                   {clientEmails[index]}
                 </Text>
