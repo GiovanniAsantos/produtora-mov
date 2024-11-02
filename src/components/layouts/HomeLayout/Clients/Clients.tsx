@@ -7,7 +7,13 @@ export const Clients: React.FC = () => {
   const [animationTriggered, setAnimationTriggered] = useState(false);
   const clientsRef = useRef<HTMLDivElement>(null);
 
-  const clientNames = ["Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"];
+  const clientNames = [
+    "Cliente 1",
+    "Cliente 2",
+    "Cliente 3",
+    "Cliente 4",
+    "Cliente 5",
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +23,11 @@ export const Clients: React.FC = () => {
         const windowHeight = window.innerHeight;
 
         // 30% of the section must be visible
-        if (top < windowHeight * 0.7 && bottom > windowHeight * 0.3 && !animationTriggered) {
+        if (
+          top < windowHeight * 0.7 &&
+          bottom > windowHeight * 0.3 &&
+          !animationTriggered
+        ) {
           setAnimationTriggered(true);
         }
       }
@@ -50,6 +60,7 @@ export const Clients: React.FC = () => {
         <Box width="100%" mt="4">
           <SimpleGrid columns={[1, 1, 2, 3]} spacing={5}>
             {clientNames.map((client, index) => (
+              // Ajuste no Box dos cards na seção Clients
               <Box
                 key={index}
                 position="relative"
@@ -59,28 +70,21 @@ export const Clients: React.FC = () => {
                 mx="auto"
                 borderRadius="50%" // Borda arredondada
                 overflow="hidden"
-                transition={`transform 1.5s ease, opacity 0.3s ease`}
-                transform={animationTriggered ? `translateX(0)` : `translateX(100%)`}
+                transition={`transform 0.8s ease, opacity 0.3s ease`} // Diminui a duração da transição
+                transform={
+                  animationTriggered ? `translateX(0)` : `translateX(-10%)`
+                } // Muda o deslocamento
                 opacity={animationTriggered ? 1 : 0}
                 animation={
                   animationTriggered
                     ? index < 3
-                      ? "fadeInFromLeft 1.5s forwards"
-                      : "fadeInFromRight 1.5s forwards"
+                      ? "fadeInFromLeft 0.8s forwards" // Aumenta a duração para 0.8s
+                      : "fadeInFromRight 0.8s forwards" // Aumenta a duração para 0.8s
                     : "none"
                 }
                 cursor="pointer"
               >
-                <Text
-                  position="absolute"
-                  top="50%"
-                  left="50%"
-                  transform="translate(-50%, -50%)"
-                  color="white"
-                  textAlign="center"
-                >
-                  {client}
-                </Text>
+                {/* Conteúdo do Card */}
               </Box>
             ))}
           </SimpleGrid>
