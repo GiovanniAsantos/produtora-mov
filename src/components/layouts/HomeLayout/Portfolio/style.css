@@ -1,46 +1,76 @@
 .portfolio-title {
-    font-size: 50px;
+  font-size: 50px;
+}
+
+.simple-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* Adjust card width */
+  gap: 20px;
+  /* Space between cards */
+}
+
+.select-menu {
+  background-color: #292a2d;
+  /* Dark background */
+  color: white;
+  /* White text */
+}
+
+.select-menu:hover {
+  background-color: #373b3f;
+  /* Lighter hover effect */
+}
+
+.portfolio-divider {
+  color: white;
+  width: 80px;
+  margin-left: 47%;
+}
+
+.portfolio-select {
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.portfolio-card {
+  background-color: #292a2d;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portfolio-button {
+  background-color: #007bff;
+  color: white;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
   }
 
-  .simple-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust card width */
-    gap: 20px; /* Space between cards */
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .select-menu {
-    background-color: #292a2d; /* Dark background */
-    color: white; /* White text */
+}
+
+@keyframes fadeInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
   }
-  
-  .select-menu:hover {
-    background-color: #373b3f; /* Lighter hover effect */
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .portfolio-divider {
-    color: white;
-    width: 80px;
-    margin-left: 47%;
-  }
-  
-  .portfolio-select {
-    width: 50%;
-    margin-bottom: 20px;
-  }
-  
-  .portfolio-card {
-    background-color: #292a2d;
-    width: 100%;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .portfolio-button {
-    background-color: #007bff;
-    color: white;
-    &:hover {
-      background-color: #0056b3;
-    }
-  }
+}

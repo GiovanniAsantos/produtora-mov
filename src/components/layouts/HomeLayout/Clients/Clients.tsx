@@ -1,58 +1,90 @@
-import { Box, Button, Text, useBreakpointValue } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { Box, Text, SimpleGrid } from "@chakra-ui/react";
+import React, { useEffect, useRef, useState } from "react";
 import MovLayout from "../../../../components/layouts/MovLayout";
 import "./style.css";
 
-type ClientsProps = {};
+export const Clients: React.FC = () => {
+  const [animationTriggered, setAnimationTriggered] = useState(false);
+  const clientsRef = useRef<HTMLDivElement>(null);
 
-export const Clients: React.FC<ClientsProps> = () => {
-  const [visibleCards, setVisibleCards] = useState(3); // Start by showing 3 cards
-  const totalCards = 15; // Total number of cards
+  const clientNames = ["Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"];
 
-  // Function to load more cards
-  const loadMoreCards = () => {
-    setVisibleCards((prev) => Math.min(prev + 3, totalCards)); // Increase by 3, but don't exceed total
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = clientsRef.current;
+      if (section) {
+        const { top, bottom } = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
 
-  // Determine if we should show all cards based on screen size
-  const showAllCards =
-    useBreakpointValue({ base: false, md: true, lg: true }) || false;
+        // 30% of the section must be visible
+        if (top < windowHeight * 0.7 && bottom > windowHeight * 0.3 && !animationTriggered) {
+          setAnimationTriggered(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [animationTriggered]);
 
   return (
     <MovLayout maxWidthContainer="100vw">
-      <Box className="clients-container">
-        <Box className="clients-title">
-          <h1>Clients</h1>
-          <hr />
+      <Box
+        ref={clientsRef}
+        marginTop="25vh"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        textAlign="center"
+        width="100%"
+        backgroundColor="#171717"
+        color="white"
+        paddingTop="0px"
+      >
+        <Box textAlign="center">
+          <h1 style={{ fontSize: "50px" }}>Clients</h1>
+          <hr style={{ color: "white", width: "80px", margin: "10px auto" }} />
         </Box>
-        <br />
-        <br />
-        <Box className="clients-grid">
-          {/* Show all cards if screen is large enough, otherwise show visible cards */}
-          {[
-            ...Array(
-              showAllCards ? totalCards : Math.min(visibleCards, totalCards)
-            ),
-          ].map((_, index) => (
-            <Box key={index} className="clients-card">
-              <Text className="clients-card-text">
-                Aqui fica a imagem do cliente {index + 1}
-              </Text>
-            </Box>
-          ))}
+        <Box width="100%" mt="4">
+          <SimpleGrid columns={[1, 1, 2, 3]} spacing={5}>
+            {clientNames.map((client, index) => (
+              <Box
+                key={index}
+                position="relative"
+                bg="#292a2d"
+                width={["250px", "250px", "300px", "300px"]} // Largura responsiva
+                height={["250px", "250px", "300px", "300px"]} // Altura responsiva
+                mx="auto"
+                borderRadius="50%" // Borda arredondada
+                overflow="hidden"
+                transition={`transform 1.5s ease, opacity 0.3s ease`}
+                transform={animationTriggered ? `translateX(0)` : `translateX(100%)`}
+                opacity={animationTriggered ? 1 : 0}
+                animation={
+                  animationTriggered
+                    ? index < 3
+                      ? "fadeInFromLeft 1.5s forwards"
+                      : "fadeInFromRight 1.5s forwards"
+                    : "none"
+                }
+                cursor="pointer"
+              >
+                <Text
+                  position="absolute"
+                  top="50%"
+                  left="50%"
+                  transform="translate(-50%, -50%)"
+                  color="white"
+                  textAlign="center"
+                >
+                  {client}
+                </Text>
+              </Box>
+            ))}
+          </SimpleGrid>
         </Box>
-        {/* Only show the button if there are more cards to load and the screen size is small */}
-        {!showAllCards && visibleCards < totalCards && (
-          <Button
-            onClick={loadMoreCards}
-            backgroundColor="#4497B3" // Set the button color
-            color="white" // Ensure text color is white
-            marginTop="20px"
-            _hover={{ backgroundColor: "#357f94" }} // Optional: Add a hover effect
-          >
-            Load More
-          </Button>
-        )}
       </Box>
     </MovLayout>
   );
