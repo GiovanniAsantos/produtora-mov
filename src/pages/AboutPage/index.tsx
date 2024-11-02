@@ -118,7 +118,7 @@ const AboutPage: React.FC<AboutPageProps> = () => {
               <Text>Reúna as informações sobre o projeto que você precisa produzir ou marque uma chamada no formulário a seguir.</Text>
             </Box>
             <Box justifyContent={'center'} alignItems={'center'} width={'100%'}>
-              <Button borderRadius={'25px'} backgroundColor={'#4497b3 !important'} width={'150px'} height={'50px'}>
+              <Button borderRadius={'20px'} backgroundColor={'#4497b3 !important'} width={'150px'} height={'50px'}>
                 Contato
               </Button>
             </Box>

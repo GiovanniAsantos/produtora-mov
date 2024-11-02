@@ -40,9 +40,9 @@ export const Portfolio: React.FC = () => {
           position="relative"
           bg="#292a2d"
           width="90%" // Mantenha a largura como 90%
-          height="199px"
+          height="195px"
           mx="auto"
-          borderRadius="8px"
+          borderRadius="20px"
           overflow="hidden"
           transition={`transform 1.5s ease, opacity 0.3s ease`}
           transform={animationTriggered ? `translateX(0)` : `translateX(0)`} // Remover o deslocamento
@@ -151,6 +151,7 @@ export const Portfolio: React.FC = () => {
             <ModalBody p={0}>
               {selectedVideo && (
                 <iframe
+                  aspect-ratio="16/9"
                   width="100%"
                   height="400px"
                   src={`https://www.youtube.com/embed/${selectedVideo}`}

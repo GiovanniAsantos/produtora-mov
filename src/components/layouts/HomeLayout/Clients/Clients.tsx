@@ -74,10 +74,10 @@ export const Clients: React.FC = () => {
                 flexDirection={"column"}
                 alignItems={"center"}
                 justifyContent={"center"}
-                borderRadius={"8px"}
+                borderRadius={"20px"}
                 position="relative"
                 bg="#292a2d"
-                width={["350px", "430px", "380px", "400px"]}
+                width={["90%", "90%", "370px", "390px"]} // Ajustando a largura
                 height={["250px", "250px", "300px", "300px"]}
                 mx="auto"
                 overflow="hidden"
@@ -111,18 +111,10 @@ export const Clients: React.FC = () => {
                     height="100%"
                   />
                 </Box>
-                <Text
-                  color="white"
-                  textAlign="center"
-                  fontSize="16px"
-                >
+                <Text color="white" textAlign="center" fontSize="16px">
                   {client}
                 </Text>
-                <Text
-                  color="white"
-                  textAlign="center"
-                  fontSize="16px"
-                >
+                <Text color="white" textAlign="center" fontSize="16px">
                   {clientEmails[index]}
                 </Text>
               </Box>
