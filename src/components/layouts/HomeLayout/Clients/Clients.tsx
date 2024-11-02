@@ -84,7 +84,16 @@ export const Clients: React.FC = () => {
                 }
                 cursor="pointer"
               >
-                {/* Conteúdo do Card */}
+                <Text
+                  position="absolute"
+                  top="50%"
+                  left="50%"
+                  transform="translate(-50%, -50%)"
+                  color="white"
+                  textAlign="center"
+                >
+                  {client}
+                </Text>
               </Box>
             ))}
           </SimpleGrid>
