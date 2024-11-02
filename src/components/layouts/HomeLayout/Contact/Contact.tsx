@@ -39,8 +39,11 @@ export const Contact: React.FC<ContactProps> = () => {
             justifyContent={"center"}
             textAlign={"center"}
           >
-            <h1 style={{ fontSize: "50px" }}>Contato</h1>
-            <hr style={{ color: "white", width: "80px", marginLeft: "47%" }} />
+            <Box
+            textAlign="center">
+              <h1 style={{ fontSize: "50px" }}>Contato</h1>
+            <hr style={{ color: "white", width: "80px", margin: "10px auto" }} />
+            </Box>
             <br />
             <p>Av Oliveira Paiva, 421, Fortaleza, Brazil 60821802</p>
             <p>(85)99639-4456</p>
