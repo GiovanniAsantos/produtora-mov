@@ -15,7 +15,19 @@ const EmailButton: React.FC<EmailButtonProps> = ({
   ...props
 }) => {
   const handleClick = () => {
-    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Verifica se o dispositivo é mobile
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+    let url;
+
+    if (isMobile) {
+      // Para dispositivos móveis, usa o esquema mailto para abrir o cliente de e-mail padrão
+      url = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    } else {
+      // Para desktop, redireciona para o site do Gmail
+      url = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
     window.open(url, "_blank");
   };
 
@@ -38,7 +50,7 @@ const EmailButton: React.FC<EmailButtonProps> = ({
       border={"2px solid white"}
       {...props}
     >
-      <Icon as={FaEnvelope} boxSize="2em" marginRight="8px" />{" "}
+      <Icon as={FaEnvelope} boxSize="2em" marginRight="8px" />
       <Text>Enviar</Text>
     </Button>
   );

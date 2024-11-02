@@ -15,6 +15,14 @@ export const Clients: React.FC = () => {
     "Cliente 5",
   ];
 
+  const clientEmails = [
+    "cliente@mail.com 1",
+    "cliente@mail.com 2",
+    "cliente@mail.com 3",
+    "cliente@mail.com 4",
+    "cliente@mail.com 5",
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       const section = clientsRef.current;
@@ -112,6 +120,13 @@ export const Clients: React.FC = () => {
                   fontSize="16px" // Tamanho da fonte ajustável
                 >
                   {client}
+                </Text>
+                <Text
+                  color="white"
+                  textAlign="center"
+                  fontSize="16px" // Tamanho da fonte ajustável
+                >
+                  {clientEmails[index]}
                 </Text>
               </Box>
             ))}
