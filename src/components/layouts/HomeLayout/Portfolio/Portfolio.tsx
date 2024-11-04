@@ -19,12 +19,12 @@ export const Portfolio: React.FC = () => {
   const portfolioRef = useRef<HTMLDivElement>(null);
 
   const videoData = [
-    { id: "ixrFududowI", title: "Exemplo de Vídeo 6" }, // index 0
-    { id: "I8Y0-CQvmSc", title: "Exemplo de Vídeo 5" }, // index 1
-    { id: "Zg6TYH25HVI", title: "Exemplo de Vídeo 4" }, // index 2
-    { id: "3Khjh8tKNmw", title: "Exemplo de Vídeo 3" }, // index 3
-    { id: "wjYzP8HuYC4", title: "Exemplo de Vídeo 2" }, // index 4
-    { id: "iZMxC7wUExo", title: "Exemplo de Vídeo 1" }, // index 5
+    { id: "ixrFududowI", title: "Exemplo de Vídeo 6" },
+    { id: "I8Y0-CQvmSc", title: "Exemplo de Vídeo 5" },
+    { id: "Zg6TYH25HVI", title: "Exemplo de Vídeo 4" },
+    { id: "3Khjh8tKNmw", title: "Exemplo de Vídeo 3" },
+    { id: "wjYzP8HuYC4", title: "Exemplo de Vídeo 2" },
+    { id: "iZMxC7wUExo", title: "Exemplo de Vídeo 1" },
   ];
 
   const openModal = (videoId: string) => {
@@ -39,23 +39,26 @@ export const Portfolio: React.FC = () => {
           key={index}
           position="relative"
           bg="#292a2d"
-          width="90%" // Mantenha a largura como 90%
+          width="90%"
           height="195px"
           mx="auto"
           borderRadius="20px"
           overflow="hidden"
-          transition={`transform 1.5s ease, opacity 0.3s ease`}
-          transform={animationTriggered ? `translateX(0)` : `translateX(0)`} // Remover o deslocamento
+          transition={`transform 0.3s ease`}
+          transform={animationTriggered ? `translateX(0)` : `translateX(0)`}
           opacity={animationTriggered ? 1 : 0}
           animation={
             animationTriggered
               ? index < 3
-                ? "fadeInFromLeft 1.5s forwards" // Aumente a duração para 1.5s
-                : "fadeInFromRight 1.5s forwards" // Aumente a duração para 1.5s
+                ? "fadeInFromLeft 1.5s forwards"
+                : "fadeInFromRight 1.5s forwards"
               : "none"
           }
           onClick={() => openModal(video.id)}
           cursor="pointer"
+          _hover={{
+            transform: "scale(1.35)",
+          }}
         >
           <Image
             src={`https://img.youtube.com/vi/${video.id}/0.jpg`}
@@ -91,7 +94,6 @@ export const Portfolio: React.FC = () => {
         const { top, bottom } = section.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
-        // 30% of the section must be visible
         if (
           top < windowHeight * 0.7 &&
           bottom > windowHeight * 0.3 &&
@@ -129,8 +131,6 @@ export const Portfolio: React.FC = () => {
         <Box width="100%" mt="4">
           {renderCards()}
         </Box>
-
-        {/* Modal para exibir o vídeo */}
         <Modal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
@@ -168,5 +168,3 @@ export const Portfolio: React.FC = () => {
     </MovLayout>
   );
 };
-
-// CSS remains unchanged

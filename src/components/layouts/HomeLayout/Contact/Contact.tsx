@@ -48,8 +48,8 @@ export const Contact: React.FC<ContactProps> = () => {
         </Box>
         <Box display={"flex"} justifyContent={"space-around"} width={"100%"} paddingX={5}>
           <Box
-            width={{ base: "0%", md: "40%" }} // Ocultar em telas pequenas
-            display={{ base: "none", md: "block" }} // Ocultar em telas pequenas
+            width={{ base: "0%", md: "40%" }} 
+            display={{ base: "none", md: "block" }} 
           >
             <Image
               src={vetorEmail}
@@ -61,44 +61,49 @@ export const Contact: React.FC<ContactProps> = () => {
           </Box>
           <Box
             alignItems={"center"}
-            width={{ base: "100%", md: "40%" }} // Mudando de 60% para 40% para igualar
-            display="flex" // Usar flex para centralizar
-            justifyContent="center" // Centralizar
+            width={{ base: "100%", md: "40%" }} 
+            display="flex" 
+            justifyContent="center"
           >
             <Stack
-              width={{ base: "80%", md: "100%" }} // Ajustar largura do Stack
+              width={{ base: "80%", md: "100%" }} 
               gap={3}
-              alignItems="center" // Centralizar
-              justifyContent="center" // Centralizar
-              display="flex" // Flex para o Stack
+              alignItems="center" 
+              justifyContent="center"
+              display="flex"
             >
               <Input
                 placeholder="Nome"
                 size="lg"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                style={{borderRadius:"20px", border:"2px solid", height:"60px",}}
               />
               <Input
                 placeholder="Telefone"
                 size="lg"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                style={{borderRadius:"20px", border:"2px solid", height:"60px",}}
               />
               <Input
                 placeholder="Endereço de E-mail"
                 size="lg"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                style={{borderRadius:"20px", border:"2px solid", height:"60px",}}
               />
               <Textarea
                 placeholder="Mensagem"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                style={{borderRadius:"20px", border:"2px solid", height:"60px", resize:"none"}}
               />
               <EmailButton
                 emailAddress="Hansley@movprodutora.com.br"
                 subject="Contato via Site MOV"
                 body={emailBody}
+                style={{borderRadius:"20px"}}
               />
             </Stack>
           </Box>
